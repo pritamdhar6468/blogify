@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 
-const CreatePost = () => {
+const CreatePost = ({onAddPost}) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log('Title:', title);
-    console.log('Content:', content);
+    const newPost = { title, content,comments: []  };
+    onAddPost(newPost);
     // Clear form fields after submission
     setTitle('');
     setContent('');
   };
 
   return (
+    
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="title">Title:</label>
@@ -37,6 +38,8 @@ const CreatePost = () => {
       </div>
       <button type="submit">Submit</button>
     </form>
+     
+    
   );
 }
 
