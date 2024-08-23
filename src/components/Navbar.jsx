@@ -10,8 +10,8 @@ const Navbar = ({signUserOut,isAuth}) => {
         <button className="navbar-button">Create a Post</button>
       </Link>
       <Link to="/home" className="link-color">Home</Link>
-      <Link to="/profile" className="link-color">profile</Link>
-      <button onClick={signUserOut}>Log out</button>
+      <Link to="/profile" className="link-color">Profile</Link>
+      <button className="log-out-btn" onClick={signUserOut}>Log out</button>
       {/* {!isAuth ? <Link to="/login" className="link-color">Login</Link> : <button onClick={signUserOut}>Log out</button>} */}
 
       {/* <div className="profile-circle"></div> */}

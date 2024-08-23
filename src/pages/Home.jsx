@@ -3,60 +3,95 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Home = ({ posts, onDeletePost, onAddComment }) => {
-  const [comments, setComments] = useState(posts.map(() => "")); // Initialize comment state for each post
+  // const [comments, setComments] = useState(posts.map(() => "")); // Initialize comment state for each post
 
-  const handleAddComment = (index, e) => {
-    e.preventDefault();
-    if (comments[index].trim() === "") return; // Prevent empty comments
+  // const handleAddComment = (index, e) => {
+  //   e.preventDefault();
+  //   if (comments[index].trim() === "") return; // Prevent empty comments
 
-    onAddComment(index, comments[index]);
-    const newComments = [...comments];
-    newComments[index] = ""; // Clear the input field for that specific post after submission
-    setComments(newComments);
-  };
+  //   onAddComment(index, comments[index]);
+  //   const newComments = [...comments];
+  //   newComments[index] = ""; // Clear the input field for that specific post after submission
+  //   setComments(newComments);
+  // };
 
-  const handleCommentChange = (index, value) => {
-    const newComments = [...comments];
-    newComments[index] = value;
-    setComments(newComments);
-  };
+  // const handleCommentChange = (index, value) => {
+  //   const newComments = [...comments];
+  //   newComments[index] = value;
+  //   setComments(newComments);
+  // };
 
   return (
     <div>
-      <h2 style={{display:"flex",justifyContent:'center',fontSize:'2.5rem'}}>Posts</h2>
-      {posts.length === 0 ? (
-        <p>No posts yet.</p>
-      ) : (
-        posts.map((post, index) => (
-          <div
-            key={index}
-            style={{
-              
-              marginBottom: "20px",
-              border: "2px solid #ccc",
-              margin:"30px",
-              padding: "10px",
-              borderRadius: "8px",
-              boxShadow:"  rgba(0, 0, 0, 0.35) 0px 5px 15px"
-            }}
-          >
-           <Link to='/'><h3>{post.title}</h3></Link> 
-            <p>{post.content}</p>
-            <button
-              onClick={() => onDeletePost(index)}
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "2.5rem",
+        }}
+      >
+        Posts
+      </h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {posts.length === 0 ? (
+          <p>No posts yet.</p>
+        ) : (
+          posts.map((post, index) => (
+            <div
+              key={index}
               style={{
-                backgroundColor: "#ff4d4d",
-                color: "white",
-                border: "none",
-                padding: "5px 10px",
-                borderRadius: "4px",
-                cursor: "pointer",
+                border: "2px solid #ccc",
+                margin: "10px",
+                width: "50%",
+                padding: "50px",
+                borderRadius: "8px",
               }}
             >
-              Delete
-            </button>
+              {/* <div>{user.name}</div> */}
 
-            <div style={{ marginTop: "15px" }}>
+              <Link to={`/post/${index}`}>
+                <h3 style={{ padding: "10px" }}>{post.title}</h3>
+              </Link>
+              <div style={{
+                      display:"flex",
+                      justifyContent:"space-between"
+                    }}>
+                <Link to={`/post/${index}`}>
+                  <button
+                    style={{
+                      color: "black",
+                      border: "none",
+                      padding: "5px 10px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    add comment
+                  </button>
+                </Link>
+
+                <button
+                  onClick={() => onDeletePost(index)}
+                  style={{
+                    backgroundColor: "#000000",
+                    color: "white",
+                    border: "none",
+                    padding: "5px 10px",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                  }}
+                >
+                  delete
+                </button>
+              </div>
+              {/* <div style={{ marginTop: "15px" }}>
               <h4>Comments</h4>
               {post.comments && post.comments.length === 0 ? (
                 <p>No comments yet.</p>
@@ -101,13 +136,14 @@ const Home = ({ posts, onDeletePost, onAddComment }) => {
                     cursor: "pointer",
                   }}
                 >
-                  Add Comment
-                </button>
-              </form>
+                  Add Comment */}
+              {/* </button> */}
+              {/* </form> */}
+              {/* </div> */}
             </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 };

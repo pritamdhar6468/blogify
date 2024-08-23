@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route,useNavigate } from "react-router
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import PostDetail from "./pages/PostDetails";
 import CreatePost from "./pages/CreatePost";
 import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
@@ -57,6 +58,14 @@ function App() {
     localStorage.setItem("posts", JSON.stringify(updatedPosts));
   };
 
+  const editPost = (index, title, content) => {
+    const updatedPosts = [...posts];
+    updatedPosts[index].title = title;
+    updatedPosts[index].content = content;
+    setPosts(updatedPosts);
+    localStorage.setItem("posts", JSON.stringify(updatedPosts));
+  };
+
   const signUserOut = () => {
     signOut(auth).then(() => {
       // Only clear authentication-related data
@@ -84,6 +93,10 @@ function App() {
             <Route
               path="/createpost"
               element={<CreatePost onAddPost={addPost} />}
+            />
+             <Route
+              path="/post/:postId"
+              element={<PostDetail posts={posts}  onEditPost={editPost} onAddComment={addComment} />}
             />
             <Route path="/profile" element={<Profile />} />
             {/* <Route path="/home" element={<Navigate to="/home" />} /> */}
