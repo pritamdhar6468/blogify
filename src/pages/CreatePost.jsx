@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 const CreatePost = ({onAddPost}) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  let navigate=useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,6 +16,7 @@ const CreatePost = ({onAddPost}) => {
     // Clear form fields after submission
     setTitle('');
     setContent('');
+    navigate('/')
   };
 
   return (

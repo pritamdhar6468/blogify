@@ -30,7 +30,7 @@ function App() {
   // Save posts to localStorage whenever posts state changes
 
   const addPost = (newPost) => {
-    const updatedPosts = [...posts, newPost];
+    const updatedPosts = [ newPost, ...posts];
     setPosts(updatedPosts);
     localStorage.setItem("posts", JSON.stringify(updatedPosts));
   };
