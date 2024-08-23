@@ -16,7 +16,7 @@ const CreatePost = ({onAddPost}) => {
     // Clear form fields after submission
     setTitle('');
     setContent('');
-    navigate('/')
+    navigate('/home')
   };
 
   return (

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,useNavigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -12,6 +12,8 @@ import { auth } from "./firebase-config";
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [posts, setPosts] = useState([]);
+
+  // let Navigate = useNavigate();
 
   useEffect(() => {
     const authStatus = localStorage.getItem("isAuth");
@@ -30,7 +32,7 @@ function App() {
   // Save posts to localStorage whenever posts state changes
 
   const addPost = (newPost) => {
-    const updatedPosts = [ newPost, ...posts];
+    const updatedPosts = [newPost, ...posts];
     setPosts(updatedPosts);
     localStorage.setItem("posts", JSON.stringify(updatedPosts));
   };
@@ -65,27 +67,33 @@ function App() {
   };
   return (
     <Router>
-      <Navbar isAuth={isAuth} signUserOut={signUserOut} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            isAuth && (
-              <Home
-                posts={posts}
-                onDeletePost={deletePost}
-                onAddComment={addComment}
-              />
-            )
-          }
-        />
-        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-        <Route
-          path="/createpost"
-          element={isAuth && <CreatePost onAddPost={addPost} />}
-        />
-        <Route path="/profile" element={isAuth && <Profile />} />
-      </Routes>
+      {isAuth ? (
+        <>
+          <Navbar isAuth={isAuth} signUserOut={signUserOut} />
+          <Routes>
+            <Route
+              path="/home"
+              element={
+                <Home
+                  posts={posts}
+                  onDeletePost={deletePost}
+                  onAddComment={addComment}
+                />
+              }
+            />
+            <Route
+              path="/createpost"
+              element={<CreatePost onAddPost={addPost} />}
+            />
+            <Route path="/profile" element={<Profile />} />
+            {/* <Route path="/home" element={<Navigate to="/home" />} /> */}
+          </Routes>
+        </>
+      ) : (
+        <Routes>
+          <Route path="/*" element={<Login setIsAuth={setIsAuth} />} />
+        </Routes>
+      )}
     </Router>
   );
 }
