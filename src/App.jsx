@@ -13,10 +13,9 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [posts, setPosts] = useState([]);
 
-
   useEffect(() => {
-    const authStatus = localStorage.getItem('isAuth');
-    if (authStatus === 'true') {
+    const authStatus = localStorage.getItem("isAuth");
+    if (authStatus === "true") {
       setIsAuth(true);
     }
   }, []);
@@ -58,7 +57,8 @@ function App() {
 
   const signUserOut = () => {
     signOut(auth).then(() => {
-      localStorage.clear();
+      // Only clear authentication-related data
+      localStorage.removeItem("isAuth"); // Remove only the auth-related data
       setIsAuth(false);
       window.location.pathname = "/login";
     });
@@ -70,11 +70,13 @@ function App() {
         <Route
           path="/"
           element={
-            <Home
-              posts={posts}
-              onDeletePost={deletePost}
-              onAddComment={addComment}
-            />
+            isAuth && (
+              <Home
+                posts={posts}
+                onDeletePost={deletePost}
+                onAddComment={addComment}
+              />
+            )
           }
         />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
