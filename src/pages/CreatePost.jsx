@@ -20,7 +20,7 @@ const CreatePost = ({ onAddPost }) => {
   };
 
   return (
-    <div>
+    <div style={{width:"100%"}}>
       <h1>Create a Post</h1>
       <div
         style={{

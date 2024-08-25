@@ -1,15 +1,29 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  height: 70px;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  border-right: 1px solid black;
+  
+  /* align-items: center; */
+  
+  width: 20vw;
+  height: 100vh;
 list-style: none;
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
+
+.nav-link{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .navbar-button {
-  padding: 10px 20px;
+  padding: 15px 50px;
+  font-size: large;
   background-color: #8bbdf4;
   color: rgb(0, 0, 0);
   border: none;
@@ -22,6 +36,14 @@ list-style: none;
   color: rgb(255, 255, 255);
 }
 
+
+.heading{
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  padding: 20px;
+}
 /* .profile-circle {
   width: 40px;
   height: 40px;
@@ -30,14 +52,19 @@ list-style: none;
 } */
 
 .link-color {
-  color: white;
-  
+  color: rgb(9, 9, 9);
+  text-decoration: none;
+  font-size: large;
+  padding: 10px;
+}
+.link-color:hover{
+  color: #58a6fb;
 }
 
 .log-out-btn{
-  padding: 5px;
+  padding: 10px 30px;
   border-radius: 5px;
 }
 .log-out-btn:hover{
-  border: 2px solid red;
+  border: 2px solid rgb(71, 232, 154);
 }

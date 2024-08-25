@@ -28,7 +28,7 @@ const Profile = () => {
   
 
   return (
-    <div className="profile-page">
+    <div className="profile-page" style={{width:"100%"}}>
       <h2>User Profile</h2>
       {user ? (
         <div>

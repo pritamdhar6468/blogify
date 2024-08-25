@@ -78,6 +78,7 @@ function App() {
     <Router>
       {isAuth ? (
         <>
+        <div style={{display:'flex',}}>
           <Navbar isAuth={isAuth} signUserOut={signUserOut} />
           <Routes>
             <Route
@@ -101,6 +102,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             {/* <Route path="/home" element={<Navigate to="/home" />} /> */}
           </Routes>
+          </div>
         </>
       ) : (
         <Routes>

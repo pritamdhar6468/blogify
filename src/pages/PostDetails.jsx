@@ -47,7 +47,7 @@ const PostDetail = ({ posts, onAddComment,onEditPost }) => {
   }
 
   return (
-    <div style={{padding:"20px"}}>
+    <div style={{padding:"20px",width:"100%"}}>
         <button onClick={handleBack}>back</button>
       {isEditing ? (
         <form onSubmit={handleSaveEdit}>

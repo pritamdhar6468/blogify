@@ -22,7 +22,7 @@ const Home = ({ posts, onDeletePost, onAddComment }) => {
   // };
 
   return (
-    <div>
+    <div style={{width:"100%"}}>
       <h2
         style={{
           display: "flex",
